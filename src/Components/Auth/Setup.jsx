@@ -9,6 +9,7 @@ const Setup = () => {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     storeName: "",
+    email: "",
     storeUsername: "",
     storeCategory: "",
     streetAddress: "",
@@ -32,13 +33,25 @@ const Setup = () => {
 
   const nextStep = () => setStep(step + 1);
   const prevStep = () => setStep(step - 1);
-  const handleSubmit = (e) => {
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert("Form submitted successfully!");
-  };
+
+    const response = await fetch("https://hiveguy.alitacode.com/public/api/store-setup/store", {
+      method: "POST",  // Use PUT if updating
+      headers: {
+        "Content-Type": "application/json"
+      },  
+      body: JSON.stringify(formData)
+    }).then(response => response.json())
+      .then(data => console.log("Success:", data))
+      .catch(err => console.log("Error:", err));
+  }
+
+  
+
 
   const [selectedOption, setSelectedOption] = useState(null);
-
   const options = [
     { value: 'apple', label: 'Apple' },
     { value: 'banana', label: 'Banana' },
@@ -54,13 +67,8 @@ const Setup = () => {
     setSelectedOption(selectedOption);
   };
 
-
-
-
   const [files, setFiles] = useState([]);
-
   const onDrop = useCallback((acceptedFiles) => {
-    // Create image preview URLs
     const imagePreviews = acceptedFiles.map(file => URL.createObjectURL(file));
     setFiles(imagePreviews);
   }, []);
@@ -85,12 +93,14 @@ const Setup = () => {
                         <div>
                           <h5 className="mb-3">Store Details</h5>
 
-                         
-                          <input type="text" name="storeName" value={formData.storeName} onChange={handleChange} className="form-control mb-2" placeholder="Store Name" required />
+                          <div>
 
-                          <input type="email" name="email" value={formData.email} onChange={handleChange} className="form-control mb-2" placeholder="Email" required />
 
-                          
+                            <input type="text" name="storeName" value={formData.storeName} onChange={handleChange} className="form-control mb-2" placeholder="Store Name" required />
+
+                            <input type="email" name="email" value={formData.email} onChange={handleChange} className="form-control mb-2" placeholder="Email" required />
+
+                          </div>
                           <input type="text" name="storeUsername" value={formData.storeUsername} onChange={handleChange} className="form-control mb-2" placeholder="Store Username" required />
                           <Select value={selectedOption} onChange={handleChanges} options={options} placeholder="Search categories" />
 
