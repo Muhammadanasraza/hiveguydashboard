@@ -32,7 +32,7 @@ const Login = () => {
                 <div className="col-lg-6 py-lg-5">
                   <div className="d-flex flex-column h-100 justify-content-center">
                     <div className="auth-logo mb-1">
-                      <img src={logo} height="24" alt="logo" />
+                      <img src={logo} height="40" alt="logo" />
                     </div>
 
                     <h2 className="fw-bold fs-24">Sign In</h2>
@@ -81,7 +81,7 @@ const Login = () => {
 
                     <p className="text-danger text-center">
                       Don't have an account?{" "}
-                      <Link href="/setup" className="text-dark fw-bold ms-1">
+                      <Link to="/setup" className="text-dark fw-bold ms-1">
                         Sign Up
                       </Link>
                     </p>
@@ -90,13 +90,13 @@ const Login = () => {
               </div>
             </div>
 
-            <div className="col-xxl-5 d-none d-xxl-flex">
+            {/* <div className="col-xxl-5 d-none d-xxl-flex">
               <div className="card h-100 mb-0 overflow-hidden">
                 <div className="d-flex flex-column h-100">
                   <img src="assets/images/small/img-10.jpg" alt="" className="w-100 h-100" />
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
