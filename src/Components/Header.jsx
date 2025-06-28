@@ -14,10 +14,6 @@ const Header = () => {
                             <div  className="d-flex align-items-center">
 
 
-                                 
-
-
-
                                 <div  className="topbar-item">
                                     <h4  className="fw-bold topbar-button pe-none text-uppercase mb-0">Store Name</h4>
                                 </div>
